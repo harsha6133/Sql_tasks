@@ -1,0 +1,13 @@
+select distinct sal from emp order by sal limit 1 offset 4;
+select distinct sal from emp order by sal desc limit 1 offset 7;
+select ename from emp where sal = (select distinct sal from emp order by sal limit 1 offset 2);
+select empno from emp where sal = (select distinct sal from emp order by sal desc limit 1 offset 1);
+select * from emp order by hiredate limit 1 offset 5;
+select ename from emp where hiredate < (select max(hiredate) from emp);
+select location from emp order by hiredate limit 1;
+create table student (sid int primary key, sname varchar(50), deptid int);
+create table department (deptid int primary key, dname varchar(50));
+insert into student values (1,'harsha',10),(2,'ajay',20),(3,'raj',null),(4,'kiran',30);
+insert into department values (10,'cse'),(20,'ece'),(30,'eee'),(40,null);
+select s.sid, s.sname, d.dname from student s left join department d on s.deptid = d.deptid;
+select s.sid, s.sname, d.dname from student s right join department d on s.deptid = d.deptid;
